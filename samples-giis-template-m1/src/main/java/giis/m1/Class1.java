@@ -8,11 +8,11 @@ public class Class1 {
 	
 	public String function11() {
 		log.info("Run function11()");
-		return "11";
+		return "x11";
 	}
 	public String function12() {
 		log.info("Run function12()");
-		return "12";
+		return "x12";
 	}
 
 }
