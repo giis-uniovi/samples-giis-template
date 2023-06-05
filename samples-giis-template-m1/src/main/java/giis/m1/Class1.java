@@ -8,7 +8,6 @@ public class Class1 {
 	
 	public String function11() {
 		log.info("Run function11()");
-		System.out.println("Run function11()");
 		return "11";
 	}
 	public String function12() {
