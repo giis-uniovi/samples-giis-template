@@ -142,6 +142,22 @@ jobs:
           package-type: 'maven'
           min-versions-to-keep: 2
           delete-only-pre-release-versions: "true"
+      - name: Cleanup old packages-bom
+        #if: ${{ false }}  # disable for now
+        uses: actions/delete-package-versions@v4
+        with: 
+          package-name: 'giis.samples-giis-template-bom'
+          package-type: 'maven'
+          min-versions-to-keep: 2
+          delete-only-pre-release-versions: "true"
+      - name: Cleanup old packages-m1
+        #if: ${{ false }}  # disable for now
+        uses: actions/delete-package-versions@v4
+        with: 
+          package-name: 'giis.samples-giis-template-m1'
+          package-type: 'maven'
+          min-versions-to-keep: 2
+          delete-only-pre-release-versions: "true"
       - name: Cleanup old packages-m2
         #if: ${{ false }}  # disable for now
         uses: actions/delete-package-versions@v4
