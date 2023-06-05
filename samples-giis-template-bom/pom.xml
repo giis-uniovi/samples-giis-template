@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>giis</groupId>
+		<artifactId>samples-giis-template</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>samples-giis-template-bom</artifactId>
+	<packaging>pom</packaging>
+	<organization>
+		<name>Software Engineering Research Group - Universidad de Oviedo</name>
+		<url>http://giis.uniovi.es/</url>
+	</organization>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>giis</groupId>
+				<artifactId>samples-giis-template-m1</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>giis</groupId>
+				<artifactId>samples-giis-template-m2</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>
