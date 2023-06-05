@@ -25,7 +25,10 @@ jobs:
         run: mvn test surefire-report:report -Daggregate=true -Dmaven.test.failure.ignore=true -U --no-transfer-progress
 
       - name: Additional aggregated junit report
-        run: ant -file aggregate.xml
+        uses: javiertuya/junit-report-action@v1
+        with:
+          surefire-files: "**/target/surefire-reports/TEST-*.xml"
+          report-dir: target/site
 
       - name: Generate report checks
         if: always()
@@ -101,7 +104,7 @@ jobs:
           scanMetadataReportFile: .scannerwork/report-task.txt 
 
   publish-java-snapshot:
-
+    #if: ${{ false }}  # disable for now
     #avoid publishing PRs and dependabot branches
     if: ${{ github.event_name != 'pull_request' && !contains('/head/refs/dependabot/', github.ref) }}
     runs-on: ubuntu-latest
