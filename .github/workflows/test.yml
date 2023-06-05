@@ -21,7 +21,7 @@ jobs:
           java-version: '8'
           cache: 'maven'
 
-      - name: Test and aggregated surefire report
+      - name: Test and aggregate surefire report
         run: mvn test surefire-report:report -Daggregate=true -Dmaven.test.failure.ignore=true -U --no-transfer-progress
 
       - name: Additional aggregated junit report
@@ -99,3 +99,49 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with: #needs location because is not aware of working-directory
           scanMetadataReportFile: .scannerwork/report-task.txt 
+
+  publish-java-snapshot:
+
+    #avoid publishing PRs and dependabot branches
+    if: ${{ github.event_name != 'pull_request' && !contains('/head/refs/dependabot/', github.ref) }}
+    runs-on: ubuntu-latest
+    env:
+      BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
+    steps:
+      - name: Checkout GitHub repo
+        uses: actions/checkout@v3
+      - name: Select Java Version
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '8'
+          cache: 'maven'
+
+      - name: Rename version to <version number>-<branch name>-SNAPSHOT
+        run: |
+          oldversion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "Renaming old version: ${oldversion}"
+          version=${oldversion//-SNAPSHOT/}
+          version=${version}-${BRANCH_NAME}-SNAPSHOT
+          echo "to new Version: $version"
+          mvn versions:set -DnewVersion=$version --no-transfer-progress
+
+      # manage package versions shows the date in which branch was created, not executed
+      # if no changing version number, this will keep latest 2 branches BY BRANCH CREATION
+      # because of this, deletion must be done BEFORE deploy (if not, a version of old branch can be deleted after being updated)
+      # TODO check how to exclude current branch
+      # NOTE at least one package must exist, if not the build fails (comment for the first build)
+      - name: Cleanup old packages
+        #if: ${{ false }}  # disable for now
+        uses: actions/delete-package-versions@v4
+        with: 
+          package-name: 'giis.samples-giis-template'
+          package-type: 'maven'
+          min-versions-to-keep: 2
+          delete-only-pre-release-versions: "true"
+
+      # note that deploy uses the profile that specifies the github repository server
+      - name: Deploy to GitHub packages
+        run: mvn deploy -P publish-github -DskipTests=true -Dmaven.test.failure.ignore=true -U --no-transfer-progress
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
