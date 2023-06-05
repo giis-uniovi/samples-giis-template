@@ -1,0 +1,46 @@
+name: test-all
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**' #avoid duplicates: only run the PR, not the commit
+      - 'gh-pages' #github pages do not trigger all tests
+    tags-ignore:
+      - 'v*' #avoids rerun existing commit on release
+  pull_request:
+    branches:
+      - 'main'
+jobs:
+  test-java:
+    runs-on: ubuntu-latest
+    #if: ${{ false }}  # disable for now
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '8'
+          cache: 'maven'
+
+      - name: Test and aggregated surefire report
+        run: mvn test surefire-report:report -Daggregate=true -Dmaven.test.failure.ignore=true -U --no-transfer-progress
+
+      - name: Additional aggregated junit report
+        run: ant -file aggregate.xml
+
+      - name: Generate report checks
+        if: always()
+        uses: mikepenz/action-junit-report@v3.7.7
+        with:
+          check_name: "test-result"
+          report_paths: "**/surefire-reports/TEST-*.xml"
+          fail_on_failure: 'true'
+
+      - if: always()
+        name: Publish test report files
+        uses: actions/upload-artifact@v3
+        with:
+          name: "test-report-files"
+          path: |
+            target/site
+            **/target/site/jacoco/jacoco.xml
+ 
