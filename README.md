@@ -9,3 +9,4 @@ Template project, includes:
 - SonarQube static test (includes coverage results)
 - Generate snapshots for each branch (published to GitHub Packages)
  
+test
