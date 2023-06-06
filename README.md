@@ -8,3 +8,5 @@ Template project, includes:
 - Aggregate test reports (surefire and junit formats)
 - SonarQube static test (includes coverage results)
 - Generate snapshots for each branch (published to GitHub Packages)
+
+test change
