@@ -8,3 +8,5 @@ Template project, includes:
 - Aggregate test reports (surefire and junit formats)
 - SonarQube static test (includes coverage results)
 - Generate snapshots for each branch (published to GitHub Packages)
+
+See the general contribution policies and guidelines for giis-uniovi at [CONTRIBUTING.md](https://github.com/giis-uniovi/.github/blob/main/profile/CONTRIBUTING.md).
