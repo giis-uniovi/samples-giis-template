@@ -5,10 +5,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>samples-giis-template</name>
-	<description>Multimodule maven template project</description>
+	<description>Multimodule maven project template</description>
 	<url>http://github.com/giis-uniovi/samples-giis-template</url>
 	<organization>
-		<name>Grupo de Investigacion en Ingenieria del Software - Universidad de Oviedo</name>
+		<name>Software Engineering Research Group (GIIS) - Universidad de Oviedo, ES</name>
 		<url>http://giis.uniovi.es/</url>
 	</organization>
 	<properties>
@@ -107,7 +107,7 @@
 					<artifactId>maven-antrun-plugin</artifactId>
 					<version>3.1.0</version>
 					<executions>
-						<!-- Consolida reports formato junit en el proyecto principal para ser mostrados en jenkins -->
+						<!-- Aggregate junit style reports -->
 						<execution>
 							<id>junit-reports</id>
 							<phase>test</phase>
@@ -176,7 +176,6 @@
 	</build>
 	<developers>
 		<developer>
-			<id>javiertuya</id>
 			<name>Javier Tuya</name>
 			<url>http://giis.uniovi.es</url>
 		</developer>

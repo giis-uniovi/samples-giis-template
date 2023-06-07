@@ -7,8 +7,11 @@
 	</parent>
 	<artifactId>samples-giis-template-bom</artifactId>
 	<packaging>pom</packaging>
+	<name>samples-giis-template-bom</name>
+	<description>Multimodule maven project template, bill of materials</description>
+	<url>http://github.com/giis-uniovi/samples-giis-template</url>
 	<organization>
-		<name>Software Engineering Research Group - Universidad de Oviedo</name>
+		<name>Software Engineering Research Group (GIIS) - Universidad de Oviedo, ES</name>
 		<url>http://giis.uniovi.es/</url>
 	</organization>
 	<dependencyManagement>

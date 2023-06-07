@@ -1,8 +1,7 @@
 target
 pom.xml.versionsBackup
 TESTS-TestSuites.xml
-*/dat/out
 *.db
-#para que cada uno personalice su sonarlint
+*/dat/out
+# to allow each developer customize sonarlint
 org.sonarlint.eclipse.core.prefs
-

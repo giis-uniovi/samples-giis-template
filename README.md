@@ -5,8 +5,10 @@
 
 Template project, includes:
 - Configuration of a maven multimodule java project
-- Aggregate test reports (surefire and junit formats)
+- Aggregated test reports (surefire and junit style)
 - SonarQube static test (includes coverage results)
-- Generate snapshots for each branch (published to GitHub Packages)
+- Publish a snapshot for each branch to GitHub Packages
+- Publish releases to Maven Central (deactivated)
 
-See the general contribution policies and guidelines for giis-uniovi at [CONTRIBUTING.md](https://github.com/giis-uniovi/.github/blob/main/profile/CONTRIBUTING.md).
+See the general contribution policies and guidelines for **giis-uniovi* at 
+[CONTRIBUTING.md](https://github.com/giis-uniovi/.github/blob/main/profile/CONTRIBUTING.md).
