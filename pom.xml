@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>giis</groupId>
 	<artifactId>samples-giis-template</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>samples-giis-template</name>
 	<description>Multimodule maven project template</description>
