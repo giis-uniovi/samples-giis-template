@@ -107,60 +107,14 @@ jobs:
     #avoid publishing PRs and dependabot branches
     if: ${{ github.event_name != 'pull_request' && !contains('/head/refs/dependabot/', github.ref) }}
     runs-on: ubuntu-latest
-    env:
-      BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
+    permissions:
+      contents: read
+      packages: write
     steps:
-      - name: Checkout GitHub repo
-        uses: actions/checkout@v3
-      - name: Select Java Version
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
+      - uses: javiertuya/branch-snapshots-action@v1.1.0
+        with: 
+          token: ${{ secrets.GITHUB_TOKEN }}
           java-version: '8'
-          cache: 'maven'
-
-      - name: Rename version to <version number>-<branch name>-SNAPSHOT
-        run: |
-          oldversion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-          echo "Renaming old version: ${oldversion}"
-          version=${oldversion//-SNAPSHOT/}
-          version=${version}-${BRANCH_NAME}-SNAPSHOT
-          echo "to new Version: $version"
-          mvn versions:set -DnewVersion=$version --no-transfer-progress
-
-      # manage package versions shows the date in which branch was created, not executed
-      # if no changing version number, this will keep latest 2 branches BY BRANCH CREATION
-      # because of this, deletion must be done BEFORE deploy (if not, a version of old branch can be deleted after being updated)
-      # NOTE at least one package must exist, if not the build fails (comment for the first build)
-      - name: Cleanup old packages
-        #if: ${{ false }}  # disable for now
-        uses: actions/delete-package-versions@v4
-        with: 
-          package-name: 'giis.samples-giis-template'
-          package-type: 'maven'
-          min-versions-to-keep: 2
-          delete-only-pre-release-versions: "true"
-      - uses: actions/delete-package-versions@v4
-        with: 
-          package-name: 'giis.samples-giis-template-bom'
-          package-type: 'maven'
-          min-versions-to-keep: 2
-          delete-only-pre-release-versions: "true"
-      - uses: actions/delete-package-versions@v4
-        with: 
-          package-name: 'giis.samples-giis-template-m1'
-          package-type: 'maven'
-          min-versions-to-keep: 2
-          delete-only-pre-release-versions: "true"
-      - uses: actions/delete-package-versions@v4
-        with: 
-          package-name: 'giis.samples-giis-template-m2'
-          package-type: 'maven'
-          min-versions-to-keep: 2
-          delete-only-pre-release-versions: "true"
-
-      # note that deploy uses the profile that specifies the github repository server
-      - name: Deploy to GitHub packages
-        run: mvn deploy -P publish-github -DskipTests=true -Dmaven.test.failure.ignore=true -U --no-transfer-progress
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          mvn-deploy-args: '-P publish-github -DskipTests=true -Dmaven.test.failure.ignore=false -U --no-transfer-progress'
+          delete-old-snapshots: true
+          min-snapshots-to-keep: 2
