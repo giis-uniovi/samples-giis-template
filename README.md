@@ -10,5 +10,5 @@ Template project, includes:
 - Publish a snapshot for each branch to GitHub Packages
 - Publish releases to Maven Central (deactivated)
 
-See the general contribution policies and guidelines for **giis-uniovi* at 
+See the general contribution policies and guidelines for *giis-uniovi* at 
 [CONTRIBUTING.md](https://github.com/giis-uniovi/.github/blob/main/profile/CONTRIBUTING.md).
