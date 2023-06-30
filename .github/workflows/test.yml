@@ -46,6 +46,7 @@ jobs:
           path: |
             target/site
             **/target/site/jacoco/jacoco.xml
+            **/target/surefire-reports
 
   sonarqube:
     needs: [test-java]
