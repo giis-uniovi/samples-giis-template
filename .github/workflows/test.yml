@@ -1,20 +1,20 @@
 name: test-all
 on:
   push:
-    branches-ignore:
-      - 'dependabot/**' #avoid duplicates: only run the PR, not the commit
-      - 'gh-pages' #github pages do not trigger all tests
-    tags-ignore:
-      - 'v*' #avoid rerun existing commit on release
-  pull_request:
-    branches:
-      - 'main'
+#    branches-ignore:
+#      - 'dependabot/**' #avoid duplicates: only run the PR, not the commit
+#      - 'gh-pages' #github pages do not trigger all tests
+#    tags-ignore:
+#      - 'v*' #avoid rerun existing commit on release
+#  pull_request:
+#    branches:
+#      - 'main'
 jobs:
   test-java:
     runs-on: ubuntu-latest
     #if: ${{ false }}  # disable for now
     #avoids duplicate execution of pr from local repo, but allows pr from forked repos and dependabot
-    if: (github.event_name != 'pull_request' && ! github.event.pull_request.head.repo.fork) || (github.event_name == 'pull_request' && (github.event.pull_request.head.repo.fork || github.actor == 'dependabot[bot]'))
+    #if: (github.event_name != 'pull_request' && ! github.event.pull_request.head.repo.fork) || (github.event_name == 'pull_request' && (github.event.pull_request.head.repo.fork || github.actor == 'dependabot[bot]'))
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
