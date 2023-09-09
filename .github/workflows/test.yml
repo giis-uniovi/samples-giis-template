@@ -16,7 +16,7 @@ jobs:
     #avoids duplicate execution of pr from local repo, but allows pr from forked repos and dependabot
     if: (github.event_name != 'pull_request' && ! github.event.pull_request.head.repo.fork) || (github.event_name == 'pull_request' && (github.event.pull_request.head.repo.fork || startsWith(github.head_ref, 'dependabot/')))
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
@@ -34,7 +34,7 @@ jobs:
 
       - name: Generate report checks
         if: always()
-        uses: mikepenz/action-junit-report@v3.8.0
+        uses: mikepenz/action-junit-report@v4.0.0
         with:
           check_name: "test-result"
           report_paths: "**/surefire-reports/TEST-*.xml"
