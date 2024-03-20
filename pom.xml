@@ -204,7 +204,7 @@
 			<id>publish-github</id>
 			<distributionManagement>
 				<snapshotRepository>
-					<id>github</id>
+					<id>github-giis</id>
 					<name>GitHub Apache Maven Packages</name>
 					<url>https://maven.pkg.github.com/giis-uniovi/samples-giis-template</url>
 				</snapshotRepository>
