@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout GitHub repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       #Official documentation seems incomplete. To avoid failure when importing key: 
       #https://stackoverflow.com/questions/61096521/how-to-use-gpg-key-in-github-actions
