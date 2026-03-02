@@ -34,7 +34,7 @@ jobs:
 
       - name: Generate report checks
         if: always()
-        uses: mikepenz/action-junit-report@v6.1.0
+        uses: mikepenz/action-junit-report@v6.3.1
         with:
           check_name: "test-result"
           report_paths: "**/surefire-reports/TEST-*.xml"
@@ -42,7 +42,7 @@ jobs:
 
       - if: always()
         name: Publish test report files
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: "test-report-files"
           path: |
@@ -73,7 +73,7 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: javiertuya/branch-snapshots-action@v1.2.3
+      - uses: javiertuya/branch-snapshots-action@v2.0.0
         with: 
           token: ${{ secrets.GITHUB_TOKEN }}
           java-version: '8'
