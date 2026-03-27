@@ -3,7 +3,7 @@
 
 # samples-giis-template
 
-Template project, includes:
+Template project (JDK17 and JUnit6), includes:
 - Configuration of a maven multimodule java project
 - Aggregated test reports (surefire and junit style)
 - SonarQube static test (includes coverage results)
