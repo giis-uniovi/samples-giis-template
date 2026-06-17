@@ -9,6 +9,7 @@ Template project (JDK17 and JUnit6), includes:
 - SonarQube static test (includes coverage results)
 - Publish a snapshot for each branch to GitHub Packages
 - Publish releases to Maven Central (deactivated)
+- A folder with files to overwrite when CI is Jenkins
 
 See the general contribution policies and guidelines for *giis-uniovi* at 
 [CONTRIBUTING.md](https://github.com/giis-uniovi/.github/blob/main/profile/CONTRIBUTING.md).
