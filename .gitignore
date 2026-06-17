@@ -2,8 +2,10 @@ target
 reports
 pom.xml.versionsBackup
 TESTS-TestSuites.xml
-*.db
-*/dat/out
+
+.classpath
+.project
+.settings
 
 .idea
 # to allow each developer customize sonarlint
