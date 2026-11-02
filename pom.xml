@@ -18,7 +18,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<surefire.version>3.6.0</surefire.version>
+		<surefire.version>3.6.1</surefire.version>
 	</properties>
 
 	<modules>
@@ -83,7 +83,7 @@
 				<plugin>
 					<groupId>org.jacoco</groupId>
 					<artifactId>jacoco-maven-plugin</artifactId>
-					<version>0.8.15</version>
+					<version>0.8.16</version>
 					<executions>
 						<execution>
 							<id>pre-unit-test</id>
